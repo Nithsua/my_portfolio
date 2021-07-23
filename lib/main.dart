@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/model/author_model.dart';
 import 'package:my_portfolio/view/index.dart';
 import 'package:my_portfolio/model/theme_model.dart';
+import 'package:my_portfolio/widget/beta_alert.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: BetaAlert()));
 }
 
 class MyApp extends StatelessWidget {
