@@ -83,6 +83,7 @@ Widget headerBuilder(
         style: TextStyle(
           color: Theme.of(context).primaryColor,
           fontSize: 31 * responsiveTextSize,
+          fontFamily: "BalsamiqSans",
           fontWeight: FontWeight.w700,
         ),
       ),

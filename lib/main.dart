@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/model/author_model.dart';
 import 'package:my_portfolio/view/index.dart';
 import 'package:my_portfolio/model/theme_model.dart';
+import 'package:my_portfolio/widget/beta_alert.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: BetaAlert()));
 }
 
 class MyApp extends StatelessWidget {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
                 return MaterialApp(
                   theme: ThemeData(
                     visualDensity: VisualDensity.adaptivePlatformDensity,
-                    fontFamily: "BalsamiqSans",
+                    fontFamily: "FiraCode",
                     iconTheme:
                         IconThemeData(color: Color.fromRGBO(37, 39, 52, 1)),
                     primaryColor: Color.fromRGBO(37, 39, 52, 1),
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
                   ),
                   darkTheme: ThemeData(
                     visualDensity: VisualDensity.adaptivePlatformDensity,
-                    fontFamily: "BalsamiqSans",
+                    fontFamily: "FiraCode",
                     iconTheme:
                         IconThemeData(color: Color.fromRGBO(234, 234, 236, 1)),
                     primaryColor: Color.fromRGBO(234, 234, 236, 1),
