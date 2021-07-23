@@ -74,6 +74,7 @@ class MainView extends StatelessWidget {
                                       child: Text(
                                         "Home",
                                         style: TextStyle(
+                                          fontFamily: "BalsamiqSans",
                                           color: Theme.of(context).primaryColor,
                                           fontSize: 19.0 * responsiveTextSize,
                                         ),
@@ -127,6 +128,7 @@ class MainView extends StatelessWidget {
                                       child: Text(
                                         "Me",
                                         style: TextStyle(
+                                          fontFamily: "BalsamiqSans",
                                           color: Theme.of(context).primaryColor,
                                           fontSize: 19.0 * responsiveTextSize,
                                         ),
@@ -166,7 +168,7 @@ class MainView extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Nivas Muthu M G/Nitsua',
+                          'Nivas Muthu M G/Nithsua',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                           ),

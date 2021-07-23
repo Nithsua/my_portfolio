@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                 return MaterialApp(
                   theme: ThemeData(
                     visualDensity: VisualDensity.adaptivePlatformDensity,
-                    fontFamily: "BalsamiqSans",
+                    fontFamily: "FiraCode",
                     iconTheme:
                         IconThemeData(color: Color.fromRGBO(37, 39, 52, 1)),
                     primaryColor: Color.fromRGBO(37, 39, 52, 1),
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                   ),
                   darkTheme: ThemeData(
                     visualDensity: VisualDensity.adaptivePlatformDensity,
-                    fontFamily: "BalsamiqSans",
+                    fontFamily: "FiraCode",
                     iconTheme:
                         IconThemeData(color: Color.fromRGBO(234, 234, 236, 1)),
                     primaryColor: Color.fromRGBO(234, 234, 236, 1),

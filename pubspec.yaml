@@ -51,6 +51,11 @@ flutter:
         - asset: assets/fonts/BalsamiqSans-Regular.ttf
         - asset: assets/fonts/BalsamiqSans-Bold.ttf
           weight: 700
+    - family: FiraCode
+      fonts:
+        - asset: assets/fonts/FiraCode-Regular.ttf
+        - asset: assets/fonts/FiraCode-Bold.ttf
+          weight: 700
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
