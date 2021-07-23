@@ -27,7 +27,7 @@ class SocialButtons extends StatelessWidget {
               icon: FontAwesomeIcons.linkedin,
               padding: EdgeInsets.all(8.0)),
           SocialButton(
-              url: 'https://github.com/Nitsuan',
+              url: 'https://github.com/Nithsua',
               name: 'Github',
               icon: FontAwesomeIcons.github,
               padding: EdgeInsets.all(8.0)),
