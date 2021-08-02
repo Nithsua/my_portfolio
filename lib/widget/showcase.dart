@@ -15,93 +15,86 @@ class ShowCase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: responsiveTextSize * 225,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FutureBuilder(
-              future: projectService.getProjects(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List<ProjectModel> projectModels = snapshot.data;
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: projectModels.length,
-                    itemBuilder: (context, position) {
-                      return Container(
-                        padding: const EdgeInsets.all(10.0),
-                        width: responsiveTextSize * 220,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: FutureBuilder(
+          future: projectService.getProjects(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<ProjectModel> projectModels = snapshot.data;
+              return ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: projectModels.length,
+                itemBuilder: (context, position) {
+                  return Container(
+                    padding: const EdgeInsets.all(10.0),
+                    width: responsiveTextSize * 220,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              projectModels[position].name,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 16 * responsiveTextSize,
+                              ),
+                            ),
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  projectModels[position].name,
+                                  projectModels[position].description,
                                   style: TextStyle(
                                     color: Theme.of(context).primaryColor,
-                                    fontSize: 16 * responsiveTextSize,
+                                    fontSize: 10 * responsiveTextSize,
                                   ),
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      projectModels[position].description,
-                                      style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                        fontSize: 10 * responsiveTextSize,
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: viewportWidth * 0.001),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: responsiveTextSize * 212 -
+                                            responsiveTextSize * 150,
+                                        child: Divider(
+                                          thickness: viewportWidth * 0.001,
+                                          color: Theme.of(context).accentColor,
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: viewportWidth * 0.001),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SizedBox(
-                                            width: responsiveTextSize * 212 -
-                                                responsiveTextSize * 150,
-                                            child: Divider(
-                                              thickness: viewportWidth * 0.001,
-                                              color:
-                                                  Theme.of(context).accentColor,
-                                            ),
-                                          ),
-                                          SocialButton(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10.0),
-                                            name: 'Github',
-                                            url:
-                                                projectModels[position].gitLink,
-                                            icon: FontAwesomeIcons.github,
-                                          ),
-                                        ],
+                                      SocialButton(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10.0),
+                                        name: 'Github',
+                                        url: projectModels[position].gitLink,
+                                        icon: FontAwesomeIcons.github,
                                       ),
-                                    ),
-                                  ],
-                                )
+                                    ],
+                                  ),
+                                ),
                               ],
-                            ),
-                          ),
+                            )
+                          ],
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   );
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              }),
-        ],
-      ),
+                },
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }
