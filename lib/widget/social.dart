@@ -17,7 +17,7 @@ class SocialButtons extends StatelessWidget {
         mainAxisAlignment: mainAxisAlignment,
         children: [
           SocialButton(
-              url: 'https://twitter.com/nitsuan_m',
+              url: 'https://twitter.com/nithsua',
               name: 'Twitter',
               icon: FontAwesomeIcons.twitter,
               padding: EdgeInsets.all(8.0)),
