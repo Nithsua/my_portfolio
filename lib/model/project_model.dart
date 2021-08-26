@@ -6,7 +6,8 @@ class ProjectModel {
   final String description;
   final String gitLink;
 
-  ProjectModel({this.name, this.description, this.gitLink});
+  ProjectModel(
+      {required this.name, required this.description, required this.gitLink});
 }
 
 class ProjectService {

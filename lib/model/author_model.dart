@@ -9,11 +9,11 @@ class AuthorModel {
   final String detailed;
 
   AuthorModel(
-      {this.publicName,
-      this.subHead1,
-      this.subHead2,
-      this.intro,
-      this.detailed});
+      {required this.publicName,
+      required this.subHead1,
+      required this.subHead2,
+      required this.intro,
+      required this.detailed});
 }
 
 class AuthorService {
@@ -34,7 +34,7 @@ class AuthorService {
 }
 
 AuthorService _authorService = AuthorService();
-AuthorModel authorModel;
+late AuthorModel authorModel;
 
 Future<void> initAuthor() async {
   authorModel = await _authorService.getAuthorData();

@@ -8,9 +8,9 @@ class AboutView extends StatelessWidget {
   final double responsiveTextSize;
   final double horizontalPadding;
   AboutView(
-      {@required this.viewportWidth,
-      @required this.horizontalPadding,
-      @required this.responsiveTextSize});
+      {required this.viewportWidth,
+      required this.horizontalPadding,
+      required this.responsiveTextSize});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class AboutView extends StatelessWidget {
         children: [
           Text(
             "Hi👋",
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 30 * responsiveTextSize,
-            ),
+            style: Theme.of(context)
+                .textTheme
+                .headline3
+                ?.apply(color: Theme.of(context).primaryColor),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -40,10 +40,7 @@ class AboutView extends StatelessWidget {
                   child: Text(
                     authorModel.detailed.replaceAll('\\n', '\n'),
                     textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 16 * responsiveTextSize,
-                    ),
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ),
               ],
@@ -68,17 +65,15 @@ class AboutView extends StatelessWidget {
                   children: [
                     Text(
                       'My Projects',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 16 * responsiveTextSize,
-                      ),
+                      style: Theme.of(context).textTheme.headline5?.apply(
+                          fontWeightDelta: 1, fontFamily: "BalsamiqSans"),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: ShowCase(
                         horizontalPadding: horizontalPadding,
                         viewportWidth: viewportWidth,
-                        responsiveTextSize: responsiveTextSize,
+                        responsivePrimarySizeFactor: responsiveTextSize,
                       ),
                     ),
                   ],

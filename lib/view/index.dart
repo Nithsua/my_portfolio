@@ -25,165 +25,113 @@ class MainView extends StatelessWidget {
       responsiveTextSize = 0.002 * MediaQuery.of(context).size.width;
     }
     return Scaffold(
-      body: SingleChildScrollView(
-        child: ChangeNotifierProvider(
-          create: (context) => ViewModel(0),
-          builder: (context, child) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: horizontalPadding, vertical: 20.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: IconButton(
-                                  onPressed: () {
-                                    Provider.of<AppTheme>(context,
-                                            listen: false)
-                                        .changeTheme();
-                                  },
-                                  icon: Icon(
-                                    Provider.of<AppTheme>(context)
-                                                .currentTheme ==
-                                            ThemeMode.light
-                                        ? Icons.nights_stay_outlined
-                                        : Icons.wb_sunny_outlined,
-                                    // color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Provider.of<ViewModel>(context,
-                                                listen: false)
-                                            .switchView(0);
-                                      },
-                                      child: Text(
-                                        "Home",
-                                        style: TextStyle(
-                                          fontFamily: "BalsamiqSans",
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 19.0 * responsiveTextSize,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.all(8.0),
-                                  //   child: TextButton(
-                                  //     onPressed: () {
-                                  //       // Provider.of<ViewModel>(context,
-                                  //       //         listen: false)
-                                  //       //     .switchView(1);
-                                  //     },
-                                  //     child: Text(
-                                  //       "Projects",
-                                  //       style: TextStyle(
-                                  //         color:
-                                  //             Theme.of(context).primaryColor,
-                                  //         fontSize: 19.0 * responsiveTextSize,
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.all(8.0),
-                                  //   child: TextButton(
-                                  //     onPressed: () {
-                                  //       //   Provider.of<ViewModel>(context,
-                                  //       //           listen: false)
-                                  //       //       .switchView(2);
-                                  //     },
-                                  //     child: Text(
-                                  //       "Blog",
-                                  //       style: TextStyle(
-                                  //         fontSize: 19.0 * responsiveTextSize,
-                                  //         color:
-                                  //             Theme.of(context).primaryColor,
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Provider.of<ViewModel>(context,
-                                                listen: false)
-                                            .switchView(3);
-                                      },
-                                      child: Text(
-                                        "Me",
-                                        style: TextStyle(
-                                          fontFamily: "BalsamiqSans",
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 19.0 * responsiveTextSize,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.only(top: viewportWidth * 0.04),
-                            child: viewCaller(
-                                Provider.of<ViewModel>(context).currentView,
-                                viewportWidth,
-                                horizontalPadding,
-                                responsiveTextSize),
-                          ),
-                        ),
-                      ],
-                    ),
+      body: ChangeNotifierProvider(
+        create: (context) => ViewModel(0),
+        builder: (context, child) {
+          return NestedScrollView(
+            headerSliverBuilder: (context, isScrolled) => [
+              SliverAppBar(
+                elevation: 0.0,
+                snap: true,
+                floating: true,
+                automaticallyImplyLeading: false,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                leading: IconButton(
+                  onPressed: () {
+                    Provider.of<AppTheme>(context, listen: false).changeTheme();
+                  },
+                  icon: Icon(
+                    Provider.of<AppTheme>(context).currentTheme ==
+                            ThemeMode.light
+                        ? Icons.nights_stay_outlined
+                        : Icons.wb_sunny_outlined,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: horizontalPadding, vertical: 20),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Made with 💛, 😁, depression, anxiety using Flutter',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                        Text(
-                          'Nivas Muthu M G/Nithsua',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                        SocialButtons(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                        )
-                      ],
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                      onPressed: () {
+                        Provider.of<ViewModel>(context, listen: false)
+                            .switchView(0);
+                      },
+                      child: Text(
+                        "Home",
+                        style: Theme.of(context).textTheme.headline5?.apply(
+                              fontFamily: "BalsamiqSans",
+                              fontSizeDelta: 5,
+                              fontWeightDelta: 1,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                      ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                      onPressed: () {
+                        Provider.of<ViewModel>(context, listen: false)
+                            .switchView(3);
+                      },
+                      child: Text(
+                        "Me",
+                        style: Theme.of(context).textTheme.headline5?.apply(
+                              fontFamily: "BalsamiqSans",
+                              fontSizeDelta: 5,
+                              fontWeightDelta: 1,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: horizontalPadding)
+                ],
+              )
+            ],
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: horizontalPadding, vertical: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: viewportWidth * 0.04),
+                        child: viewCaller(
+                            Provider.of<ViewModel>(context).currentView,
+                            viewportWidth,
+                            horizontalPadding,
+                            responsiveTextSize),
+                      ),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: horizontalPadding, vertical: 20),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Made with 💛, 😁, depression, anxiety using Flutter',
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              'Nivas Muthu M G/Nithsua',
+                            ),
+                            SocialButtons(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            );
-          },
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
