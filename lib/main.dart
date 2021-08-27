@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/model/author_model.dart';
 import 'package:my_portfolio/view/index.dart';
 import 'package:my_portfolio/model/theme_model.dart';
-// import 'package:my_portfolio/widget/beta_alert.dart';
+import 'package:my_portfolio/widget/beta_alert.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  // runApp(MaterialApp(home: BetaAlert()));
-  runApp(MaterialApp(home: MyApp()));
+  runApp(MaterialApp(home: BetaAlert()));
+  // runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

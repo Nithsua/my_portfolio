@@ -67,7 +67,7 @@ class MainView extends StatelessWidget {
                         "Home",
                         style: Theme.of(context).textTheme.headline5?.apply(
                               fontFamily: "BalsamiqSans",
-                              fontSizeDelta: 5,
+                              fontSizeDelta: 2,
                               fontWeightDelta: 1,
                               color: Theme.of(context).primaryColor,
                             ),
@@ -85,7 +85,7 @@ class MainView extends StatelessWidget {
                         "Me",
                         style: Theme.of(context).textTheme.headline5?.apply(
                               fontFamily: "BalsamiqSans",
-                              fontSizeDelta: 5,
+                              fontSizeDelta: 2,
                               fontWeightDelta: 1,
                               color: Theme.of(context).primaryColor,
                             ),

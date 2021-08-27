@@ -7,8 +7,8 @@ class ShowCase extends StatelessWidget {
   final double responsivePrimarySizeFactor;
   final double viewportWidth;
   final double horizontalPadding;
-  final PageController _pageController =
-      PageController(keepPage: false, viewportFraction: 0.8);
+  // final PageController _pageController =
+  // PageController(keepPage: false, viewportFraction: 0.8);
 
   ShowCase(
       {required this.responsivePrimarySizeFactor,
@@ -25,14 +25,15 @@ class ShowCase extends StatelessWidget {
             if (snapshot.hasData) {
               List<ProjectModel> projectModels =
                   snapshot.data as List<ProjectModel>;
-              return PageView.builder(
-                controller: _pageController,
-                pageSnapping: true,
+              return ListView.builder(
+                shrinkWrap: true,
+                // pageSnapping: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: projectModels.length,
                 itemBuilder: (context, position) {
                   return Container(
                     padding: const EdgeInsets.all(10.0),
+                    width: responsivePrimarySizeFactor * 220,
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
@@ -58,10 +59,7 @@ class ShowCase extends StatelessWidget {
                               children: [
                                 Text(
                                   projectModels[position].description,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1
-                                      ?.apply(fontSizeDelta: 3),
+                                  style: Theme.of(context).textTheme.subtitle1,
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
