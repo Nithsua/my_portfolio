@@ -8,7 +8,7 @@ class ShowCase extends StatelessWidget {
   final double viewportWidth;
   final double horizontalPadding;
   final PageController _pageController =
-      PageController(keepPage: false, viewportFraction: 0.7);
+      PageController(keepPage: false, viewportFraction: 0.8);
 
   ShowCase(
       {required this.responsivePrimarySizeFactor,
@@ -58,6 +58,12 @@ class ShowCase extends StatelessWidget {
                               children: [
                                 Text(
                                   projectModels[position].description,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1
+                                      ?.apply(fontSizeDelta: 3),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -66,10 +72,7 @@ class ShowCase extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SizedBox(
-                                        width: responsivePrimarySizeFactor *
-                                                212 -
-                                            responsivePrimarySizeFactor * 150,
+                                      Expanded(
                                         child: Divider(
                                           thickness: viewportWidth * 0.001,
                                           color: Theme.of(context).accentColor,

@@ -16,51 +16,46 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraint) {
-      if (viewportWidth > 1000) {
-        return Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                headerBuilder(
-                    context,
-                    authorModel.publicName,
-                    authorModel.subHead1,
-                    authorModel.subHead2,
-                    CrossAxisAlignment.start,
-                    viewportWidth,
-                    horizontalPadding),
-                Avatar(
-                  responsiveTextSize: responsiveTextSize,
-                ),
-              ],
-            ),
-            bodyBuilder(
-                context, authorModel.intro, viewportWidth, horizontalPadding),
-          ],
-        );
-      } else {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Avatar(
-              responsiveTextSize: responsiveTextSize,
-            ),
-            headerBuilder(
-                context,
-                authorModel.publicName,
-                authorModel.subHead1,
-                authorModel.subHead2,
-                CrossAxisAlignment.center,
-                viewportWidth,
-                horizontalPadding),
-            bodyBuilder(
-                context, authorModel.intro, viewportWidth, horizontalPadding),
-          ],
-        );
-      }
-    });
+    return viewportWidth > 1000
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  headerBuilder(
+                      context,
+                      authorModel.publicName,
+                      authorModel.subHead1,
+                      authorModel.subHead2,
+                      CrossAxisAlignment.start,
+                      viewportWidth,
+                      horizontalPadding),
+                  Avatar(
+                    responsiveTextSize: responsiveTextSize,
+                  ),
+                ],
+              ),
+              bodyBuilder(context, authorModel.intro, viewportWidth),
+            ],
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Avatar(
+                responsiveTextSize: responsiveTextSize,
+              ),
+              headerBuilder(
+                  context,
+                  authorModel.publicName,
+                  authorModel.subHead1,
+                  authorModel.subHead2,
+                  CrossAxisAlignment.center,
+                  viewportWidth,
+                  horizontalPadding),
+              bodyBuilder(context, authorModel.intro, viewportWidth),
+            ],
+          );
   }
 }
 
@@ -79,6 +74,7 @@ Widget headerBuilder(
           style: Theme.of(context).textTheme.headline3?.apply(
                 fontFamily: "BalsamiqSans",
                 fontWeightDelta: 2,
+                fontSizeDelta: 10,
                 color: Theme.of(context).primaryColor,
               )),
       Padding(
@@ -94,12 +90,12 @@ Widget headerBuilder(
       Text(
         subHead1,
         textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.headline6?.apply(fontSizeDelta: 7),
       ),
       Text(
         subHead2,
         textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.headline6?.apply(fontSizeDelta: 7),
       ),
       Padding(
         padding: EdgeInsets.symmetric(vertical: viewportWidth * 0.0001),
@@ -113,10 +109,13 @@ Widget headerBuilder(
   );
 }
 
-Widget bodyBuilder(BuildContext context, String intro, double viewportWidth,
-    double horizontalPadding) {
+Widget bodyBuilder(
+  BuildContext context,
+  String intro,
+  double viewportWidth,
+) {
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: viewportWidth * 0.05),
+    padding: EdgeInsets.symmetric(vertical: 50.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -124,7 +123,8 @@ Widget bodyBuilder(BuildContext context, String intro, double viewportWidth,
           padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: Text(
             "->  Intro",
-            style: Theme.of(context).textTheme.headline6,
+            style:
+                Theme.of(context).textTheme.headline6?.apply(fontSizeDelta: 5),
           ),
         ),
         Text(
@@ -138,7 +138,8 @@ Widget bodyBuilder(BuildContext context, String intro, double viewportWidth,
           padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: Text(
             authorModel.intro.replaceAll('\\n', '\n'),
-            style: Theme.of(context).textTheme.subtitle1,
+            style:
+                Theme.of(context).textTheme.subtitle1?.apply(fontSizeDelta: 10),
           ),
         ),
         TextButton(

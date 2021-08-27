@@ -31,21 +31,28 @@ class MainView extends StatelessWidget {
           return NestedScrollView(
             headerSliverBuilder: (context, isScrolled) => [
               SliverAppBar(
-                elevation: 0.0,
+                elevation: 1.0,
                 snap: true,
+                pinned: true,
                 floating: true,
                 automaticallyImplyLeading: false,
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                leading: IconButton(
-                  onPressed: () {
-                    Provider.of<AppTheme>(context, listen: false).changeTheme();
-                  },
-                  icon: Icon(
-                    Provider.of<AppTheme>(context).currentTheme ==
-                            ThemeMode.light
-                        ? Icons.nights_stay_outlined
-                        : Icons.wb_sunny_outlined,
-                    color: Theme.of(context).primaryColor,
+                backgroundColor: isScrolled
+                    ? Theme.of(context).cardTheme.color
+                    : Theme.of(context).scaffoldBackgroundColor,
+                title: Padding(
+                  padding: EdgeInsets.only(left: horizontalPadding),
+                  child: IconButton(
+                    onPressed: () {
+                      Provider.of<AppTheme>(context, listen: false)
+                          .changeTheme();
+                    },
+                    icon: Icon(
+                      Provider.of<AppTheme>(context).currentTheme ==
+                              ThemeMode.light
+                          ? Icons.nights_stay_outlined
+                          : Icons.wb_sunny_outlined,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
                 actions: [
@@ -149,6 +156,6 @@ Widget viewCaller(int currentView, double viewportWidth,
     return AboutView(
       viewportWidth: viewportWidth,
       horizontalPadding: horizontalPadding,
-      responsiveTextSize: responsiveTextSize,
+      responsivePrimarySize: responsiveTextSize,
     );
 }
