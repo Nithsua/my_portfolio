@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Avatar extends StatelessWidget {
   final double responsiveTextSize;
 
-  Avatar({this.responsiveTextSize});
+  Avatar({required this.responsiveTextSize});
 
   @override
   Widget build(BuildContext context) {

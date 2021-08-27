@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 class SocialButtons extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
 
-  SocialButtons({this.mainAxisAlignment});
+  SocialButtons({required this.mainAxisAlignment});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,11 @@ class SocialButton extends StatelessWidget {
   final IconData icon;
   final EdgeInsets padding;
 
-  SocialButton({this.url, this.name, this.icon, this.padding});
+  SocialButton(
+      {required this.url,
+      required this.name,
+      required this.icon,
+      required this.padding});
 
   @override
   Widget build(BuildContext context) {

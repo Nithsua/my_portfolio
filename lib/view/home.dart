@@ -10,59 +10,52 @@ class HomeView extends StatelessWidget {
   final double responsiveTextSize;
   final double horizontalPadding;
   HomeView(
-      {@required this.viewportWidth,
-      @required this.horizontalPadding,
-      @required this.responsiveTextSize});
+      {required this.viewportWidth,
+      required this.horizontalPadding,
+      required this.responsiveTextSize});
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraint) {
-      if (viewportWidth > 1000) {
-        return Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                headerBuilder(
-                    context,
-                    authorModel.publicName,
-                    authorModel.subHead1,
-                    authorModel.subHead2,
-                    CrossAxisAlignment.start,
-                    responsiveTextSize,
-                    viewportWidth,
-                    horizontalPadding),
-                Avatar(
-                  responsiveTextSize: responsiveTextSize,
-                ),
-              ],
-            ),
-            bodyBuilder(context, authorModel.intro, responsiveTextSize,
-                viewportWidth, horizontalPadding),
-          ],
-        );
-      } else {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Avatar(
-              responsiveTextSize: responsiveTextSize,
-            ),
-            headerBuilder(
-                context,
-                authorModel.publicName,
-                authorModel.subHead1,
-                authorModel.subHead2,
-                CrossAxisAlignment.center,
-                responsiveTextSize,
-                viewportWidth,
-                horizontalPadding),
-            bodyBuilder(context, authorModel.intro, responsiveTextSize,
-                viewportWidth, horizontalPadding),
-          ],
-        );
-      }
-    });
+    return viewportWidth > 1000
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  headerBuilder(
+                      context,
+                      authorModel.publicName,
+                      authorModel.subHead1,
+                      authorModel.subHead2,
+                      CrossAxisAlignment.start,
+                      viewportWidth,
+                      horizontalPadding),
+                  Avatar(
+                    responsiveTextSize: responsiveTextSize,
+                  ),
+                ],
+              ),
+              bodyBuilder(context, authorModel.intro, viewportWidth),
+            ],
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Avatar(
+                responsiveTextSize: responsiveTextSize,
+              ),
+              headerBuilder(
+                  context,
+                  authorModel.publicName,
+                  authorModel.subHead1,
+                  authorModel.subHead2,
+                  CrossAxisAlignment.center,
+                  viewportWidth,
+                  horizontalPadding),
+              bodyBuilder(context, authorModel.intro, viewportWidth),
+            ],
+          );
   }
 }
 
@@ -72,21 +65,18 @@ Widget headerBuilder(
     String subHead1,
     String subHead2,
     CrossAxisAlignment crossAxisAlignment,
-    double responsiveTextSize,
     double viewportWidth,
     double horizontalPadding) {
   return Column(
     crossAxisAlignment: crossAxisAlignment,
     children: [
-      Text(
-        publicName,
-        style: TextStyle(
-          color: Theme.of(context).primaryColor,
-          fontSize: 31 * responsiveTextSize,
-          fontFamily: "BalsamiqSans",
-          fontWeight: FontWeight.w700,
-        ),
-      ),
+      Text(publicName,
+          style: Theme.of(context).textTheme.headline3?.apply(
+                fontFamily: "BalsamiqSans",
+                fontWeightDelta: 2,
+                fontSizeDelta: 10,
+                color: Theme.of(context).primaryColor,
+              )),
       Padding(
         padding: EdgeInsets.symmetric(vertical: viewportWidth * 0.0001),
         child: SizedBox(
@@ -100,18 +90,12 @@ Widget headerBuilder(
       Text(
         subHead1,
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: responsiveTextSize * 16,
-          color: Theme.of(context).primaryColor,
-        ),
+        style: Theme.of(context).textTheme.headline6?.apply(fontSizeDelta: 7),
       ),
       Text(
         subHead2,
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: responsiveTextSize * 16,
-          color: Theme.of(context).primaryColor,
-        ),
+        style: Theme.of(context).textTheme.headline6?.apply(fontSizeDelta: 7),
       ),
       Padding(
         padding: EdgeInsets.symmetric(vertical: viewportWidth * 0.0001),
@@ -125,10 +109,13 @@ Widget headerBuilder(
   );
 }
 
-Widget bodyBuilder(BuildContext context, String intro,
-    double responsiveTextSize, double viewportWidth, double horizontalPadding) {
+Widget bodyBuilder(
+  BuildContext context,
+  String intro,
+  double viewportWidth,
+) {
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: viewportWidth * 0.05),
+    padding: EdgeInsets.symmetric(vertical: 50.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -136,27 +123,23 @@ Widget bodyBuilder(BuildContext context, String intro,
           padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: Text(
             "->  Intro",
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 16 * responsiveTextSize,
-            ),
+            style:
+                Theme.of(context).textTheme.headline6?.apply(fontSizeDelta: 5),
           ),
         ),
         Text(
           "Hi👋",
-          style: TextStyle(
-            color: Theme.of(context).primaryColor,
-            fontSize: 27 * responsiveTextSize,
-          ),
+          style: Theme.of(context)
+              .textTheme
+              .headline4
+              ?.apply(color: Theme.of(context).primaryColor),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: Text(
             authorModel.intro.replaceAll('\\n', '\n'),
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 16 * responsiveTextSize,
-            ),
+            style:
+                Theme.of(context).textTheme.subtitle1?.apply(fontSizeDelta: 10),
           ),
         ),
         TextButton(

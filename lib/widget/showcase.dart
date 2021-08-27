@@ -4,30 +4,36 @@ import 'package:my_portfolio/model/project_model.dart';
 import 'package:my_portfolio/widget/social.dart';
 
 class ShowCase extends StatelessWidget {
-  final double responsiveTextSize;
+  final double responsivePrimarySizeFactor;
   final double viewportWidth;
   final double horizontalPadding;
+  // final PageController _pageController =
+  // PageController(keepPage: false, viewportFraction: 0.8);
 
   ShowCase(
-      {this.responsiveTextSize, this.viewportWidth, this.horizontalPadding});
+      {required this.responsivePrimarySizeFactor,
+      required this.viewportWidth,
+      required this.horizontalPadding});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: responsiveTextSize * 225,
+      height: responsivePrimarySizeFactor * 225,
       child: FutureBuilder(
           future: projectService.getProjects(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              List<ProjectModel> projectModels = snapshot.data;
+              List<ProjectModel> projectModels =
+                  snapshot.data as List<ProjectModel>;
               return ListView.builder(
                 shrinkWrap: true,
+                // pageSnapping: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: projectModels.length,
                 itemBuilder: (context, position) {
                   return Container(
                     padding: const EdgeInsets.all(10.0),
-                    width: responsiveTextSize * 220,
+                    width: responsivePrimarySizeFactor * 220,
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0)),
@@ -40,20 +46,22 @@ class ShowCase extends StatelessWidget {
                           children: [
                             Text(
                               projectModels[position].name,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 16 * responsiveTextSize,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  ?.apply(
+                                      fontSizeDelta: 5.0,
+                                      fontWeightDelta: 1,
+                                      fontFamily: "BalsamiqSans"),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   projectModels[position].description,
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 10 * responsiveTextSize,
-                                  ),
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -62,9 +70,7 @@ class ShowCase extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SizedBox(
-                                        width: responsiveTextSize * 212 -
-                                            responsiveTextSize * 150,
+                                      Expanded(
                                         child: Divider(
                                           thickness: viewportWidth * 0.001,
                                           color: Theme.of(context).accentColor,
