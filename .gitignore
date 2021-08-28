@@ -49,7 +49,6 @@ app.*.map.json
 ios/GoogleService-Info.plist
 web/firebase_ref.js
 .firebaserc
-firebase.json
 .firebase/
 
 .vscode/
